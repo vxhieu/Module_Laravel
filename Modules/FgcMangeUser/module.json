@@ -1,0 +1,11 @@
+{
+    "name": "FgcMangeUser",
+    "alias": "fgcmangeuser",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\FgcMangeUser\\Providers\\FgcMangeUserServiceProvider"
+    ],
+    "files": []
+}
