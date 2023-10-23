@@ -13,9 +13,9 @@ use Modules\FgcMangeUser\Http\Controllers\UserManageController;
 */
 
 Route::get('/user', [UserManageController::class, 'index'])->name('user.index');
-Route::match(['get', 'post'],'/user/{id}/edit', [UserManageController::class,'edit'])->name('user.edit');
+Route::put('/user/{id}/edit', [UserManageController::class,'edit'])->name('user.edit');
 Route::delete('/user/{id}',  [UserManageController::class,'destroy'])->name('user.delete');
-Route::match(['get', 'post'], '/user/create', [UserManageController::class, 'showForm'])->name('user.showForm');
+Route::post( '/user/create', [UserManageController::class, 'showForm'])->name('user.showForm');
 Route::post('/register', [UserManageController::class, 'create'])->name('user.create');
-Route::match(['get', 'post'],'/user/close', [UserManageController::class, 'close'])->name('user.close');
+Route::post('/user/close', [UserManageController::class, 'close'])->name('user.close');
 Route::put('/user/update/{id}', [UserManageController::class, 'update'])->name('user.update');

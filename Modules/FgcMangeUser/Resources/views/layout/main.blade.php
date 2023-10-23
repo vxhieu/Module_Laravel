@@ -2,6 +2,8 @@
 @section('main')
 <div class="action">
     <form class="action-create" action="{{ route('user.showForm')}}" method="POST">
+        @csrf
+        @method('POST')
         <button type="submit" class="btn">Create New User</button>
     </form>
 </div>
@@ -42,7 +44,10 @@
                                 </div>
                                 </form>
                                 <form  action="{{ route('user.edit', ['id' => $user->id]) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
                                 <div class="action-user">
+
                                     <button type="submit " class="btn-edit btn">Edit</button>
                                 </div>
                                 </form>

@@ -2,12 +2,12 @@
 
 namespace Modules\FgcMangeUser\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
+use Modules\FgcMangeUser\Entities\User;
 
 class UserManageController extends Controller
 {

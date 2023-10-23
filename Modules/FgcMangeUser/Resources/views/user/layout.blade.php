@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/master.css') }}" rel="stylesheet">
+    @vite(['resources/css/app.scss','resources/css/app.css','resources/css/app.js'])
 </head>
 <body class="container">
 <div class="header">
@@ -26,6 +27,8 @@
         <div class="form-wrap">
             <div class="form-action">
                 <form action="{{route('user.close')}}" method="POST">
+                    @csrf
+                    @method('POST')
                     <div class="action-close">
                         <button type="submit" class="btn">Close</button>
                     </div>
@@ -44,6 +47,8 @@
                     @method('PUT')
             @else
                         <form class="form-data" action="{{ route('user.create')}}" method="POST">
+                            @csrf
+                            @method('POST')
                     @endif
                 <div class="wrap-data">
 
