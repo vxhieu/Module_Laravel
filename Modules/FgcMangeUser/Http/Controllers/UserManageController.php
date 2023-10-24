@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
 use Modules\FgcMangeUser\Entities\User;
+use Illuminate\Support\Facades\Validator;
 
 class UserManageController extends Controller
 {
@@ -19,20 +20,29 @@ class UserManageController extends Controller
 
     public function create(Request $request): RedirectResponse
     {
-        $user = new User();
-        dd($user);
-        $user->first_name = $request->input('first_name');
-        $user->last_name = $request->input('last_name');
-        $user->phone_number = $request->input('phone_number');
-        $user->address = $request->input('address');
-        $user->email = $request->input('email');
-        $user->password = bcrypt($request->input('password')); // Hash the password for security
-        $user->created_by = $request->input('created_by');
-        $user->updated_by = $request->input('updated_by');
-        $user->save(); // Save the user to the database
-
-        return redirect('/user');
-        // Show the user creation form
+        $validate = Validator::make($request->all(), [
+            'first_name'=>'required',
+            'last_name'=>'required',
+            'phone_number'=>'required',
+            'address'=>'required',
+            'email' => 'required|email|unique:manage_user',
+            'password' => 'required',
+        ]);
+        if($validate->fails()){
+            return back()->withErrors($validate->errors())->withInput();
+        }else{
+            $user = new User();
+            $user->first_name = $request->input('first_name');
+            $user->last_name = $request->input('last_name');
+            $user->phone_number = $request->input('phone_number');
+            $user->address = $request->input('address');
+            $user->email = $request->input('email');
+            $user->password = bcrypt($request->input('password')); // Hash the password for security
+            $user->created_by = $request->input('created_by');
+            $user->updated_by = $request->input('updated_by');
+            $user->save(); // Save the user to the database
+            return redirect('/user');
+        }
     }
     public function showForm(): View
     {
