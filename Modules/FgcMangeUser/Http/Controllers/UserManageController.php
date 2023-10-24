@@ -20,6 +20,7 @@ class UserManageController extends Controller
     public function create(Request $request): RedirectResponse
     {
         $user = new User();
+        dd($user);
         $user->first_name = $request->input('first_name');
         $user->last_name = $request->input('last_name');
         $user->phone_number = $request->input('phone_number');
